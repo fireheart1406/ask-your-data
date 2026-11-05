@@ -1,0 +1,57 @@
+[
+  {
+    "id": 1,
+    "level": "easy",
+    "question": "How many customers are there in total?",
+    "passed": true,
+    "first_try": true,
+    "attempts": 1,
+    "predicted_sql": "SELECT COUNT(*) AS total_customers FROM customers",
+    "gold_sql": "SELECT COUNT(*) FROM customers",
+    "error": null
+  },
+  {
+    "id": 2,
+    "level": "easy",
+    "question": "How many products are in the Books category?",
+    "passed": true,
+    "first_try": true,
+    "attempts": 1,
+    "predicted_sql": "SELECT COUNT(*) AS total_products FROM products WHERE category = 'Books'",
+    "gold_sql": "SELECT COUNT(*) FROM products WHERE category = 'Books'",
+    "error": null
+  },
+  {
+    "id": 3,
+    "level": "easy",
+    "question": "List all distinct product categories.",
+    "passed": true,
+    "first_try": true,
+    "attempts": 1,
+    "predicted_sql": "SELECT DISTINCT category FROM products",
+    "gold_sql": "SELECT DISTINCT category FROM products",
+    "error": null
+  },
+  {
+    "id": 4,
+    "level": "easy",
+    "question": "How many orders have the status cancelled?",
+    "passed": true,
+    "first_try": true,
+    "attempts": 1,
+    "predicted_sql": "SELECT COUNT(*) AS cancelled_orders FROM orders WHERE status = 'cancelled'",
+    "gold_sql": "SELECT COUNT(*) FROM orders WHERE status = 'cancelled'",
+    "error": null
+  },
+  {
+    "id": 5,
+    "level": "easy",
+    "question": "What is the name and price of the most expensive product?",
+    "passed": true,
+    "first_try": true,
+    "attempts": 1,
+    "predicted_sql": "SELECT product_name, unit_price FROM products ORDER BY unit_price DESC LIMIT 1",
+    "gold_sql": "SELECT product_name, unit_price FROM products ORDER BY unit_price DESC LIMIT 1",
+    "error": null
+  }
+]
