@@ -19,10 +19,22 @@ Rules:
 6. For "top N" questions, ORDER BY the right column and LIMIT N.
 7. Only return the columns the question asks for. Do not add extra columns.
 8. When the question asks for a rounded number, use ROUND(value, 2) on a numeric value.
+9. Use INNER JOIN by default. Use LEFT JOIN only when the question asks about rows that
+   may have no match (for example "customers who never ordered").
+10. Put filters such as status <> 'cancelled' in the WHERE clause. Never put a filter on a
+    joined table inside a LEFT JOIN's ON clause, because that keeps the unwanted rows.
 Business definitions:
 - Anything about sales, "sold", revenue, spend, or order value is calculated from
   order_items as quantity * unit_price, and EXCLUDES orders whose status is 'cancelled',
   unless the question says otherwise.
+- Pattern for revenue grouped by something: INNER JOIN order_items to orders, then INNER JOIN
+  to the table you group by, and filter with WHERE. Example:
+  SELECT o.payment_method, SUM(oi.quantity * oi.unit_price) AS revenue
+  FROM orders o
+  JOIN order_items oi ON oi.order_id = o.order_id
+  WHERE o.status <> 'cancelled'
+  GROUP BY o.payment_method
+  Do not start from the table you group by and LEFT JOIN toward orders.
 - "Order value" means the total of all items in one order.
 - Questions about "placing" or "ordering" count every order regardless of status.
 - When a question names a year or month, filter with EXTRACT(YEAR FROM ...) / EXTRACT(MONTH FROM ...).
